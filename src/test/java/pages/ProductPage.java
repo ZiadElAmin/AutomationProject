@@ -34,6 +34,7 @@ public class ProductPage {
         Actions actions = new Actions(driver);
         actions.moveToElement(firstProduct).perform();
 
+        try { Thread.sleep(1000); } catch (InterruptedException e) {}
 
         driver.findElements(By.xpath("//div[@class='product-overlay']//a[contains(text(),'Add to cart')]")).get(0).click();
     }

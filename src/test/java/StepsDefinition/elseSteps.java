@@ -1,10 +1,14 @@
 package StepsDefinition;
 
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.*;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+
+import java.time.Duration;
 
 public class elseSteps {
 
@@ -58,6 +62,8 @@ public class elseSteps {
 
     @Then("I should be redirected to the Login page")
     public void i_should_be_redirected_to_login_page() {
+        new WebDriverWait(Hooks.driver, Duration.ofSeconds(10)).until(
+                ExpectedConditions.urlContains("login"));
         Assert.assertTrue(Hooks.driver.getCurrentUrl().contains("login"), "Not redirected to login page!");
     }
 }

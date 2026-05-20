@@ -24,7 +24,7 @@ public class HomePage {
     }
 
     public void clickCart() {
-        driver.findElement(By.linkText("Cart")).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Cart"))).click();
     }
 
     public void clickContactUs() {
@@ -36,18 +36,20 @@ public class HomePage {
     }
 
     public void clickLogout() {
-        driver.findElement(By.linkText("Logout")).click();
+        wait.until(ExpectedConditions.elementToBeClickable(
+                By.cssSelector("a[href='/logout']"))).click();
     }
 
     public String getLoggedInText() {
-        return driver.findElement(By.xpath("//li/a/b")).getText();
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//a/b"))).getText();
     }
 
 
     public boolean isLoggedIn() {
         try {
-
-            return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li/a/b"))).isDisplayed();
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.cssSelector("a[href='/logout'] b"))).isDisplayed();
         } catch (Exception e) {
             return false;
         }
